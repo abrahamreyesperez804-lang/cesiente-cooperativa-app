@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1e3a8a">
+    <meta name="description" content="Cesiente Bank - Tu banco móvil de confianza">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Cesiente Bank">
+    
+    <title>Cesiente Bank - Banca Móvil</title>
+    
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==">
+    
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="icon-192.png">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-spinner"></div>
+        <h2>Cesiente Bank</h2>
+        <p>Cargando...</p>
+    </div>
+
+    <!-- Login Screen -->
+    <div id="login-screen" class="screen active">
+        <div class="auth-container">
+            <div class="bank-logo">
+                <div class="logo-icon">💳</div>
+                <h1>Cesiente Bank</h1>
+                <p class="tagline">Tu banco de confianza</p>
+            </div>
+            
+            <form id="login-form" class="auth-form">
+                <div class="form-group">
+                    <label for="login-username">Usuario</label>
+                    <input type="text" id="login-username" placeholder="Ingresa tu usuario" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="login-password">Contraseña</label>
+                    <input type="password" id="login-password" placeholder="Ingresa tu contraseña" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-block">
+                    <span class="btn-text">Iniciar Sesión</span>
+                    <span class="btn-loading">
+                        <span class="spinner-small"></span>
+                    </span>
+                </button>
+                
+                <div class="auth-links">
+                    <a href="#" id="forgot-password">¿Olvidaste tu contraseña?</a>
+                    <a href="#" id="show-register">Crear cuenta nueva</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Screen -->
+    <div id="register-screen" class="screen">
+        <div class="auth-container">
+            <div class="screen-header">
+                <button class="btn-back" id="register-back">← Volver</button>
+                <h2>Crear Cuenta</h2>
+            </div>
+            
+            <form id="register-form" class="auth-form">
+                <div class="form-group">
+                    <label for="reg-fullname">Nombre Completo</label>
+                    <input type="text" id="reg-fullname" placeholder="Juan Pérez" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reg-email">Correo Electrónico</label>
+                    <input type="email" id="reg-email" placeholder="correo@ejemplo.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reg-username">Usuario</label>
+                    <input type="text" id="reg-username" placeholder="Elige un nombre de usuario" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reg-password">Contraseña</label>
+                    <input type="password" id="reg-password" placeholder="Mínimo 6 caracteres" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-block">
+                    <span class="btn-text">Registrarse</span>
+                    <span class="btn-loading">
+                        <span class="spinner-small"></span>
+                    </span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dashboard Screen -->
+    <div id="dashboard-screen" class="screen">
+        <div class="app-header">
+            <div class="header-user">
+                <div class="avatar">👤</div>
+                <div class="user-info">
+                    <span class="greeting">Hola,</span>
+                    <span class="username" id="dashboard-username">Usuario</span>
+                </div>
+            </div>
+            <button class="btn-icon" id="btn-notifications">
+                <span class="notification-badge">3</span>
+                🔔
+            </button>
+        </div>
+
+        <div class="balance-card">
+            <p class="balance-label">Balance Disponible</p>
+            <h1 class="balance-amount" id="balance-amount">RD$ 0.00</h1>
+            <div class="account-number">Cuenta: <span id="account-number">****1234</span></div>
+            <div class="balance-actions">
+                <button class="balance-btn" id="btn-add-money">
+                    <span class="icon">💰</span>
+                    Depositar
+                </button>
+                <button class="balance-btn" id="btn-withdraw">
+                    <span class="icon">💸</span>
+                    Retirar
+                </button>
+            </div>
+        </div>
+
+        <div class="quick-actions">
+            <h3>Acciones Rápidas</h3>
+            <div class="action-grid">
+                <button class="action-card" data-action="transfer">
+                    <span class="action-icon">💸</span>
+                    <span class="action-label">Transferir</span>
+                </button>
+                <button class="action-card" data-action="payments">
+                    <span class="action-icon">📄</span>
+                    <span class="action-label">Pagar</span>
+                </button>
+                <button class="action-card" data-action="history">
+                    <span class="action-icon">📊</span>
+                    <span class="action-label">Historial</span>
+                </button>
+                <button class="action-card" data-action="profile">
+                    <span class="action-icon">⚙️</span>
+                    <span class="action-label">Perfil</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="recent-transactions">
+            <div class="section-header">
+                <h3>Transacciones Recientes</h3>
+                <a href="#" id="view-all-transactions">Ver todas</a>
+            </div>
+            <div id="transactions-list" class="transactions-list">
+                <!-- Transactions will be loaded here -->
+            </div>
+        </div>
+
+        <div class="bottom-nav">
+            <button class="nav-item active" data-nav="home">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-label">Inicio</span>
+            </button>
+            <button class="nav-item" data-nav="transactions">
+                <span class="nav-icon">📊</span>
+                <span class="nav-label">Movimientos</span>
+            </button>
+            <button class="nav-item" data-nav="payments">
+                <span class="nav-icon">💳</span>
+                <span class="nav-label">Pagos</span>
+            </button>
+            <button class="nav-item" data-nav="profile">
+                <span class="nav-icon">👤</span>
+                <span class="nav-label">Perfil</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Transfer Screen -->
+    <div id="transfer-screen" class="screen">
+        <div class="screen-header">
+            <button class="btn-back" data-back="dashboard">← Volver</button>
+            <h2>Transferir Dinero</h2>
+        </div>
+
+        <form id="transfer-form" class="form-container">
+            <div class="form-group">
+                <label for="transfer-recipient">Destinatario</label>
+                <input type="text" id="transfer-recipient" placeholder="Número de cuenta o usuario" required>
+            </div>
+
+            <div class="form-group">
+                <label for="transfer-amount">Monto</label>
+                <div class="input-currency">
+                    <span class="currency-symbol">RD$</span>
+                    <input type="number" id="transfer-amount" placeholder="0.00" step="0.01" min="1" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="transfer-description">Descripción (opcional)</label>
+                <input type="text" id="transfer-description" placeholder="Ej: Pago de renta">
+            </div>
+
+            <div class="transfer-summary">
+                <div class="summary-row">
+                    <span>Monto:</span>
+                    <span id="summary-amount">RD$ 0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Comisión:</span>
+                    <span>RD$ 0.00</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total:</span>
+                    <span id="summary-total">RD$ 0.00</span>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">
+                <span class="btn-text">Transferir</span>
+                <span class="btn-loading">
+                    <span class="spinner-small"></span>
+                </span>
+            </button>
+        </form>
+    </div>
+
+    <!-- Payments Screen -->
+    <div id="payments-screen" class="screen">
+        <div class="screen-header">
+            <button class="btn-back" data-back="dashboard">← Volver</button>
+            <h2>Pagos y Servicios</h2>
+        </div>
+
+        <div class="payments-categories">
+            <button class="payment-category" data-category="utilities">
+                <span class="category-icon">💡</span>
+                <span class="category-name">Servicios Públicos</span>
+            </button>
+            <button class="payment-category" data-category="phone">
+                <span class="category-icon">📱</span>
+                <span class="category-name">Recargas</span>
+            </button>
+            <button class="payment-category" data-category="loans">
+                <span class="category-icon">🏦</span>
+                <span class="category-name">Préstamos</span>
+            </button>
+            <button class="payment-category" data-category="credit-card">
+                <span class="category-icon">💳</span>
+                <span class="category-name">Tarjetas</span>
+            </button>
+        </div>
+
+        <div id="payment-form-container" class="form-container hidden">
+            <h3 id="payment-category-title">Pago de Servicio</h3>
+            <form id="payment-form">
+                <div class="form-group">
+                    <label for="payment-provider">Proveedor</label>
+                    <select id="payment-provider" required>
+                        <option value="">Selecciona un proveedor</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="payment-account">Número de Cuenta/Contrato</label>
+                    <input type="text" id="payment-account" placeholder="Ingresa el número" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="payment-amount">Monto</label>
+                    <div class="input-currency">
+                        <span class="currency-symbol">RD$</span>
+                        <input type="number" id="payment-amount" placeholder="0.00" step="0.01" min="1" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">
+                    <span class="btn-text">Pagar</span>
+                    <span class="btn-loading">
+                        <span class="spinner-small"></span>
+                    </span>
+                </button>
+                <button type="button" class="btn btn-secondary btn-block" id="cancel-payment">Cancelar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Transaction History Screen -->
+    <div id="history-screen" class="screen">
+        <div class="screen-header">
+            <button class="btn-back" data-back="dashboard">← Volver</button>
+            <h2>Historial de Transacciones</h2>
+        </div>
+
+        <div class="filter-tabs">
+            <button class="filter-tab active" data-filter="all">Todas</button>
+            <button class="filter-tab" data-filter="income">Ingresos</button>
+            <button class="filter-tab" data-filter="expense">Gastos</button>
+        </div>
+
+        <div id="history-list" class="transactions-list">
+            <!-- Full transaction history will be loaded here -->
+        </div>
+    </div>
+
+    <!-- Profile Screen -->
+    <div id="profile-screen" class="screen">
+        <div class="screen-header">
+            <button class="btn-back" data-back="dashboard">← Volver</button>
+            <h2>Mi Perfil</h2>
+        </div>
+
+        <div class="profile-container">
+            <div class="profile-avatar-section">
+                <div class="profile-avatar-large">👤</div>
+                <h3 id="profile-name">Usuario</h3>
+                <p id="profile-email">usuario@email.com</p>
+            </div>
+
+            <div class="profile-info">
+                <div class="info-item">
+                    <span class="info-label">Número de Cuenta:</span>
+                    <span class="info-value" id="profile-account">****1234</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Tipo de Cuenta:</span>
+                    <span class="info-value">Ahorros</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Miembro desde:</span>
+                    <span class="info-value" id="profile-member-since">2024</span>
+                </div>
+            </div>
+
+            <div class="profile-actions">
+                <button class="profile-action-btn" id="edit-profile">
+                    <span class="icon">✏️</span>
+                    <span>Editar Perfil</span>
+                </button>
+                <button class="profile-action-btn" id="change-password">
+                    <span class="icon">🔒</span>
+                    <span>Cambiar Contraseña</span>
+                </button>
+                <button class="profile-action-btn" id="security-settings">
+                    <span class="icon">🛡️</span>
+                    <span>Seguridad</span>
+                </button>
+                <button class="profile-action-btn" id="help-support">
+                    <span class="icon">❓</span>
+                    <span>Ayuda y Soporte</span>
+                </button>
+                <button class="profile-action-btn danger" id="logout">
+                    <span class="icon">🚪</span>
+                    <span>Cerrar Sesión</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Confirmation Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h3 id="modal-title">Confirmar</h3>
+            <p id="modal-message">¿Estás seguro?</p>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="modal-cancel">Cancelar</button>
+                <button class="btn btn-primary" id="modal-confirm">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
